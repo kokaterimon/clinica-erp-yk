@@ -1,0 +1,5 @@
+CREATE TABLE Educacion (
+	idEducacion BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nombreEducacion VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

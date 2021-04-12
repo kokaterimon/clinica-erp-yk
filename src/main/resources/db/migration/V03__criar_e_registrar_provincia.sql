@@ -1,0 +1,6 @@
+CREATE TABLE Provincia (
+	idProvincia BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nombreProvincia VARCHAR(50) NOT NULL,
+    idDepartamento BIGINT(20) NOT NULL,
+    FOREIGN KEY (idDepartamento) REFERENCES Departamento (idDepartamento) ON DELETE RESTRICT ON UPDATE CASCADE    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
