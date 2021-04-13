@@ -2,6 +2,7 @@ package com.clinica.erpapi.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -42,25 +42,24 @@ public class Empleado {
     @Column(name = "salario")
     private String salario;
 
+    @Column(name = "fechaNacimiento")
+    private Date fechaNacimiento;
+
     //==============================================================================// 
     
     //================================================================================ 
     // Relations
-    @ManyToOne
-    @JoinColumn(name = "idDistrito")
-    private Distrito distrito;
+    @OneToMany(mappedBy = "empleado")
+    private Set<Direccion> direcciones = new HashSet<>();
+
+    @OneToMany(mappedBy = "empleado")
+    private Set<EmpInstitucion> empInstituciones = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinTable(name="emparea", 
                 joinColumns={@JoinColumn(name="idEmpleado")}, 
                 inverseJoinColumns={@JoinColumn(name="idArea")})
-    private Set<Area> areas;
-
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinTable(name="empeducacion", 
-                joinColumns={@JoinColumn(name="idEmpleado")}, 
-                inverseJoinColumns={@JoinColumn(name="idEducacion")})
-    private Set<Educacion> educaciones;
+    private Set<Area> areas;    
 
     @OneToMany(mappedBy = "empleado")
     private Set<Usuario> usuarios = new HashSet<>();
@@ -104,11 +103,23 @@ public class Empleado {
     public void setSalario(String salario) {
         this.salario = salario;
     }
-    public Distrito getDistrito() {
-        return distrito;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
-    public void setDistrito(Distrito distrito) {
-        this.distrito = distrito;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    public Set<Direccion> getDirecciones() {
+        return direcciones;
+    }
+    public void setDirecciones(Set<Direccion> direcciones) {
+        this.direcciones = direcciones;
+    }
+    public Set<EmpInstitucion> getEmpInstituciones() {
+        return empInstituciones;
+    }
+    public void setEmpInstituciones(Set<EmpInstitucion> empInstituciones) {
+        this.empInstituciones = empInstituciones;
     }
     public Set<Area> getAreas() {
         return areas;
@@ -116,19 +127,13 @@ public class Empleado {
     public void setAreas(Set<Area> areas) {
         this.areas = areas;
     }
-    public Set<Educacion> getEducaciones() {
-        return educaciones;
-    }
-    public void setEducaciones(Set<Educacion> educaciones) {
-        this.educaciones = educaciones;
-    }
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-    //==============================================================================// 
+    //==============================================================================//
     
     @Override
     public int hashCode() {
@@ -151,6 +156,8 @@ public class Empleado {
         return true;
     }
     
+
+
 
     
 }

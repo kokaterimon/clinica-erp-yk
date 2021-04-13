@@ -34,7 +34,7 @@ public class Distrito {
     private Provincia provincia;
 
     @OneToMany(mappedBy = "distrito")
-    private Set<Empleado> empleados = new HashSet<>();
+    private Set<Direccion> direcciones = new HashSet<>();
     //==============================================================================// 
 
     //================================================================================ 
@@ -57,11 +57,11 @@ public class Distrito {
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
-    public Set<Empleado> getEmpleados() {
-        return empleados;
+    public Set<Direccion> getDirecciones() {
+        return direcciones;
     }
-    public void setEmpleados(Set<Empleado> empleados) {
-        this.empleados = empleados;
+    public void setDirecciones(Set<Direccion> direcciones) {
+        this.direcciones = direcciones;
     }
     //==============================================================================// 
 
@@ -87,6 +87,7 @@ public class Distrito {
             return false;
         return true;
     }
+    
     
     
 }

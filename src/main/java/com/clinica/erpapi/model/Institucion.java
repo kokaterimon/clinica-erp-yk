@@ -8,21 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "educacion")
-public class Educacion {
+@Table(name = "institucion")
+public class Institucion {
      //================================================================================ 
     // Columns
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEducacion")
-    private long idEducacion;
+    @Column(name = "idInstitucion")
+    private long idInstitucion;
 
-    @Column(name = "nombreEducacion")
-    private String nombreEducacion;
+    @Column(name = "nombreInstitucion")
+    private String nombreInstitucion;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -30,23 +30,23 @@ public class Educacion {
 
     //================================================================================ 
     // Relations
-    @ManyToMany(mappedBy = "educacion")
-    private Set<Empleado> empleados = new HashSet<>();   
+    @OneToMany(mappedBy = "institucion")
+    private Set<EmpInstitucion> empInstituciones = new HashSet<>();
     //==============================================================================// 
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdEducacion() {
-        return idEducacion;
+    public long getIdInstitucion() {
+        return idInstitucion;
     }
-    public void setIdEducacion(long idEducacion) {
-        this.idEducacion = idEducacion;
+    public void setIdInstitucion(long idInstitucion) {
+        this.idInstitucion = idInstitucion;
     }
-    public String getNombreEducacion() {
-        return nombreEducacion;
+    public String getNombreInstitucion() {
+        return nombreInstitucion;
     }
-    public void setNombreEducacion(String nombreEducacion) {
-        this.nombreEducacion = nombreEducacion;
+    public void setNombreInstitucion(String nombreInstitucion) {
+        this.nombreInstitucion = nombreInstitucion;
     }
     public String getDescripcion() {
         return descripcion;
@@ -54,18 +54,18 @@ public class Educacion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<Empleado> getEmpleados() {
-        return empleados;
+    public Set<EmpInstitucion> getEmpInstituciones() {
+        return empInstituciones;
     }
-    public void setEmpleados(Set<Empleado> empleados) {
-        this.empleados = empleados;
-    }
+    public void setEmpInstituciones(Set<EmpInstitucion> empInstituciones) {
+        this.empInstituciones = empInstituciones;
+    } 
     //==============================================================================// 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idEducacion ^ (idEducacion >>> 32));
+        result = prime * result + (int) (idInstitucion ^ (idInstitucion >>> 32));
         return result;
     }
     @Override
@@ -76,11 +76,12 @@ public class Educacion {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Educacion other = (Educacion) obj;
-        if (idEducacion != other.idEducacion)
+        Institucion other = (Institucion) obj;
+        if (idInstitucion != other.idInstitucion)
             return false;
         return true;
     }
-
+    
+    
     
 }
