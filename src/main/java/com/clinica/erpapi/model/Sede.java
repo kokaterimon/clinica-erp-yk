@@ -3,85 +3,79 @@ package com.clinica.erpapi.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "sede")
+public class Sede {
 
     // ================================================================================
     // Columns
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
-    private long idUsuario;
+    @Column(name = "idSede")
+    private long idSede;
 
-    @Column(name = "nombreUsuario")
-    private String nombreUsuario;
+    @Column(name = "nombreSede")
+    private String nombreSede;
 
-    @Column(name = "emailUsuario")
-    private String emailUsuario;
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "telefono")
+    private String telefono;
     // ==============================================================================//
 
     // ================================================================================
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idEmpleado")
-    private Empleado empleado;
-    
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "usuarioroles", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
-            @JoinColumn(name = "idRolSistema") })
-    private Set<RolSistema> rolSistemas;
+    @JoinColumn(name = "idEmpresa")
+    private Empresa empresa;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "sede")
     private Set<TerminalVenta> terminalesVenta = new HashSet<>();
     // ==============================================================================//
 
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdUsuario() {
-        return idUsuario;
+    public long getIdSede() {
+        return idSede;
     }
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdSede(long idSede) {
+        this.idSede = idSede;
     }
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombreSede() {
+        return nombreSede;
     }
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombreSede(String nombreSede) {
+        this.nombreSede = nombreSede;
     }
-    public String getEmailUsuario() {
-        return emailUsuario;
+    public String getDireccion() {
+        return direccion;
     }
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
-    public Empleado getEmpleado() {
-        return empleado;
+    public String getTelefono() {
+        return telefono;
     }
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
-    public Set<RolSistema> getRolSistemas() {
-        return rolSistemas;
+    public Empresa getEmpresa() {
+        return empresa;
     }
-    public void setRolSistemas(Set<RolSistema> rolSistemas) {
-        this.rolSistemas = rolSistemas;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
     public Set<TerminalVenta> getTerminalesVenta() {
         return terminalesVenta;
@@ -91,12 +85,12 @@ public class Usuario {
     }
     // ==============================================================================//
 
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idUsuario ^ (idUsuario >>> 32));
+        result = prime * result + (int) (idSede ^ (idSede >>> 32));
         return result;
     }
     @Override
@@ -107,8 +101,8 @@ public class Usuario {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Usuario other = (Usuario) obj;
-        if (idUsuario != other.idUsuario)
+        Sede other = (Sede) obj;
+        if (idSede != other.idSede)
             return false;
         return true;
     }
@@ -116,5 +110,7 @@ public class Usuario {
 
     
 
+    
+    
 
 }

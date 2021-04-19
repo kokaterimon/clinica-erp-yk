@@ -53,6 +53,7 @@ public class Area {
         this.empleados = empleados;
     }
     //==============================================================================// 
+    
     @Override
     public int hashCode() {
         final int prime = 31;

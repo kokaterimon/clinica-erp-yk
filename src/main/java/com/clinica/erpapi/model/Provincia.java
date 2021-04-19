@@ -35,7 +35,7 @@ public class Provincia {
     private Departamento departamento;
 
     @OneToMany(mappedBy = "provincia")
-    private Set<Distrito> Distritos = new HashSet<>();
+    private Set<Distrito> distritos = new HashSet<>();
     //==============================================================================// 
 
     //================================================================================ 
@@ -59,10 +59,10 @@ public class Provincia {
         this.departamento = departamento;
     }    
     public Set<Distrito> getDistritos() {
-        return Distritos;
+        return distritos;
     }
     public void setDistritos(Set<Distrito> distritos) {
-        Distritos = distritos;
+        this.distritos = distritos;
     }    
     //==============================================================================//
 
