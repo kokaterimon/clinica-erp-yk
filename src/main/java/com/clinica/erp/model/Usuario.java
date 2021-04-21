@@ -40,58 +40,66 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
-    
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "usuarioroles", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
+    @JoinTable(name = "usuario_roles", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
             @JoinColumn(name = "idRolSistema") })
-    private Set<RolSistema> rolSistemas;
+    private Set<RolSistema> roles;
 
     @OneToMany(mappedBy = "usuario")
     private Set<TerminalVenta> terminalesVenta = new HashSet<>();
     // ==============================================================================//
 
-
-    //================================================================================ 
+    // ================================================================================
     // Getters and Setters
     public long getIdUsuario() {
         return idUsuario;
     }
+
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+
     public String getEmailUsuario() {
         return emailUsuario;
     }
+
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
+
     public Empleado getEmpleado() {
         return empleado;
     }
+
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-    public Set<RolSistema> getRolSistemas() {
-        return rolSistemas;
-    }
-    public void setRolSistemas(Set<RolSistema> rolSistemas) {
-        this.rolSistemas = rolSistemas;
     }
     public Set<TerminalVenta> getTerminalesVenta() {
         return terminalesVenta;
     }
+
     public void setTerminalesVenta(Set<TerminalVenta> terminalesVenta) {
         this.terminalesVenta = terminalesVenta;
     }
+    public Set<RolSistema> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RolSistema> roles) {
+        this.roles = roles;
+    }
     // ==============================================================================//
 
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -99,6 +107,7 @@ public class Usuario {
         result = prime * result + (int) (idUsuario ^ (idUsuario >>> 32));
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -112,9 +121,5 @@ public class Usuario {
             return false;
         return true;
     }
-
-
-    
-
 
 }

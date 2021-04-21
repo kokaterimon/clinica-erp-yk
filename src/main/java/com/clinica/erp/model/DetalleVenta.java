@@ -1,6 +1,7 @@
 package com.clinica.erp.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,38 +16,38 @@ public class DetalleVenta {
 
     // ================================================================================
     // Columns
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDetalleVenta")
-    private long idDetalleVenta;
+    @EmbeddedId
+    private DetalleVentaKey id;
 
     @Column(name = "cantidad")
     private String cantidad;
     // ==============================================================================//
 
 
+
     // ================================================================================
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idVenta")
+    @JoinColumn(name = "idVenta", insertable = false, updatable = false)
     private Venta venta;
 
     @ManyToOne
-    @JoinColumn(name = "idServicio")
+    @JoinColumn(name = "idServicio", insertable = false, updatable = false)
     private Servicio servicio;
 
     @ManyToOne
-    @JoinColumn(name = "idEstadoServicio")
-    private EstadoServicio estadoServicio;
+    @JoinColumn(name = "idEstadoServ", insertable = false, updatable = false)
+    private EstadoServicio estadoservicio;
     // ==============================================================================//
-        
+
+
     // ================================================================================
     // Getters and Setters
-    public long getIdDetalleVenta() {
-        return idDetalleVenta;
+    public DetalleVentaKey getId() {
+        return id;
     }
-    public void setIdDetalleVenta(long idDetalleVenta) {
-        this.idDetalleVenta = idDetalleVenta;
+    public void setId(DetalleVentaKey id) {
+        this.id = id;
     }
     public String getCantidad() {
         return cantidad;
@@ -66,21 +67,20 @@ public class DetalleVenta {
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
-    public EstadoServicio getEstadoServicio() {
-        return estadoServicio;
+    public EstadoServicio getEstadoservicio() {
+        return estadoservicio;
     }
-    public void setEstadoServicio(EstadoServicio estadoServicio) {
-        this.estadoServicio = estadoServicio;
+    public void setEstadoservicio(EstadoServicio estadoservicio) {
+        this.estadoservicio = estadoservicio;
     }
     // ==============================================================================//
-
 
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idDetalleVenta ^ (idDetalleVenta >>> 32));
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
     @Override
@@ -92,10 +92,18 @@ public class DetalleVenta {
         if (getClass() != obj.getClass())
             return false;
         DetalleVenta other = (DetalleVenta) obj;
-        if (idDetalleVenta != other.idDetalleVenta)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
+
+    // ==============================================================================//
+
+    
+
 
     
     

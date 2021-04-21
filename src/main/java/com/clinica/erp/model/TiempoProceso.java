@@ -29,7 +29,7 @@ public class TiempoProceso {
 
     // ================================================================================
     // Relations
-    @OneToMany(mappedBy = "tiempoproceso")
+    @OneToMany(mappedBy = "tiempoProc")
     private Set<Servicio> servicios = new HashSet<>();
     // ==============================================================================//
 

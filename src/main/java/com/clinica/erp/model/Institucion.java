@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,8 +30,8 @@ public class Institucion {
 
     //================================================================================ 
     // Relations
-    @OneToMany(mappedBy = "institucion")
-    private Set<EmpInstitucion> empInstituciones = new HashSet<>();
+    @ManyToMany(mappedBy = "instituciones")
+    private Set<Empleado> empleados = new HashSet<>();
     //==============================================================================// 
 
     //================================================================================ 
@@ -54,11 +54,11 @@ public class Institucion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<EmpInstitucion> getEmpInstituciones() {
-        return empInstituciones;
+    public Set<Empleado> getInstituciones() {
+        return empleados;
     }
-    public void setEmpInstituciones(Set<EmpInstitucion> empInstituciones) {
-        this.empInstituciones = empInstituciones;
+    public void setEmpInstituciones(Set<Empleado> empleados) {
+        this.empleados = empleados;
     } 
     //==============================================================================// 
     @Override

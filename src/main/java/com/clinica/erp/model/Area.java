@@ -1,10 +1,14 @@
 package com.clinica.erp.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,8 +29,8 @@ public class Area {
 
     //================================================================================ 
     // Relations
-  /*  @ManyToMany(mappedBy = "area")
-    private Set<Empleado> empleados = new HashSet<>();  */ 
+    @ManyToMany(mappedBy = "areas")
+    private Set<Empleado> empleados = new HashSet<>();
     //==============================================================================// 
 
 
@@ -44,12 +48,12 @@ public class Area {
     public void setNombreArea(String nombreArea) {
         this.nombreArea = nombreArea;
     }
-  /*  public Set<Empleado> getEmpleados() {
+    public Set<Empleado> getEmpleados() {
         return empleados;
     }
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
-    }*/
+    }
     //==============================================================================// 
     
     @Override

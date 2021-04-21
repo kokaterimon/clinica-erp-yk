@@ -4,11 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +25,9 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEmpleado")
     private long idEmpleado;
+
+    @Column(name = "dni")
+    private String dni;
     
     @Column(name = "direccion")
     private String direccion;
@@ -40,8 +47,18 @@ public class Empleado {
     @Column(name = "fechaNacimiento")
     private Date fechaNacimiento;
 
+    @Column(name = "fechaInicio")
+    private Date fechaInicio;
+
+    @Column(name = "fechaFin")
+    private Date fechaFin;
+
+    @Column(name = "estado")
+    private String estado;
+
     //==============================================================================// 
     
+
     //================================================================================ 
     // Relations
     @OneToMany(mappedBy = "empleado")
@@ -50,16 +67,26 @@ public class Empleado {
     @OneToMany(mappedBy = "empleado")
     private Set<EmpInstitucion> empInstituciones = new HashSet<>();
 
-    /*   @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="emparea", 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="emp_area", 
                 joinColumns={@JoinColumn(name="idEmpleado")}, 
                 inverseJoinColumns={@JoinColumn(name="idArea")})
-    private Set<Area> areas;   */ 
+    private Set<Area> areas;   
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="emp_institucion", 
+                joinColumns={@JoinColumn(name="idEmpleado")}, 
+                inverseJoinColumns={@JoinColumn(name="idInstitucion")})
+    private Set<Institucion> instituciones;   
 
     @OneToMany(mappedBy = "empleado")
     private Set<Usuario> usuarios = new HashSet<>();
-    //==============================================================================// 
 
+    @OneToMany(mappedBy = "empleado")
+    private Set<Horario> horarios = new HashSet<>();
+    //==============================================================================// 
+    
+    
     //================================================================================ 
     // Getters and Setters
     public long getIdEmpleado() {
@@ -67,6 +94,12 @@ public class Empleado {
     }
     public void setIdEmpleado(long idEmpleado) {
         this.idEmpleado = idEmpleado;
+    }
+    public String getDni() {
+        return dni;
+    }
+    public void setDni(String dni) {
+        this.dni = dni;
     }
     public String getDireccion() {
         return direccion;
@@ -104,6 +137,24 @@ public class Empleado {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     public Set<Direccion> getDirecciones() {
         return direcciones;
     }
@@ -116,18 +167,19 @@ public class Empleado {
     public void setEmpInstituciones(Set<EmpInstitucion> empInstituciones) {
         this.empInstituciones = empInstituciones;
     }
-  /*  public Set<Area> getAreas() {
+    public Set<Area> getAreas() {
         return areas;
     }
     public void setAreas(Set<Area> areas) {
         this.areas = areas;
-    }*/
+    }
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
     //==============================================================================//
     
     @Override
@@ -137,6 +189,7 @@ public class Empleado {
         result = prime * result + (int) (idEmpleado ^ (idEmpleado >>> 32));
         return result;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

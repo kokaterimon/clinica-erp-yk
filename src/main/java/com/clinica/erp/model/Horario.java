@@ -1,5 +1,8 @@
 package com.clinica.erp.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,65 +13,85 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "direccion")
-public class Direccion {
+@Table(name = "horario")
+public class Horario {
     
     //================================================================================ 
     // Columns
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDireccion")
-    private long idDireccion;
+    @Column(name = "idHorario")
+    private long idHorario;
     
-    @Column(name = "direccion")
-    private String direccion;
+    @Column(name = "diaInicio")
+    private Date diaInicio;
+
+    @Column(name = "diaFin")
+    private Date diaFin;
+
+    @Column(name = "horaEntrada")
+    private Time horaEntrada;
+
+    @Column(name = "horaSalida")
+    private Time horaSalida;
     //==============================================================================// 
+
+
 
     //================================================================================ 
     // Relations
-    @ManyToOne
-    @JoinColumn(name = "idDistrito")
-    private Distrito distrito;
-
     @ManyToOne
     @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
     //==============================================================================//
 
+
     //================================================================================ 
     // Getters and Setters
-    public long getIdDireccion() {
-        return idDireccion;
+    public long getIdHorario() {
+        return idHorario;
     }
-    public void setIdDireccion(long idDireccion) {
-        this.idDireccion = idDireccion;
+    public void setIdHorario(long idHorario) {
+        this.idHorario = idHorario;
     }
-    public String getDireccion() {
-        return direccion;
+    public Date getDiaInicio() {
+        return diaInicio;
     }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDiaInicio(Date diaInicio) {
+        this.diaInicio = diaInicio;
     }
-    public Distrito getDistrito() {
-        return distrito;
+    public Date getDiaFin() {
+        return diaFin;
     }
-    public void setDistrito(Distrito distrito) {
-        this.distrito = distrito;
+    public void setDiaFin(Date diaFin) {
+        this.diaFin = diaFin;
+    }
+    public Time getHoraEntrada() {
+        return horaEntrada;
+    }
+    public void setHoraEntrada(Time horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+    public Time getHoraSalida() {
+        return horaSalida;
+    }
+    public void setHoraSalida(Time horaSalida) {
+        this.horaSalida = horaSalida;
     }
     public Empleado getEmpleado() {
         return empleado;
     }
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
+    }   
     //==============================================================================//
-
-
+    
+    
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idDireccion ^ (idDireccion >>> 32));
+        result = prime * result + (int) (idHorario ^ (idHorario >>> 32));
         return result;
     }
     @Override
@@ -79,10 +102,9 @@ public class Direccion {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Direccion other = (Direccion) obj;
-        if (idDireccion != other.idDireccion)
+        Horario other = (Horario) obj;
+        if (idHorario != other.idHorario)
             return false;
         return true;
     }
-    
 }

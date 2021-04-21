@@ -39,7 +39,7 @@ public class TerminalVenta {
     @JoinColumn(name = "idSede")
     private Sede sede;
 
-    @OneToMany(mappedBy = "terminalventa")
+    @OneToMany(mappedBy = "terminalVenta")
     private Set<Venta> ventas = new HashSet<>();
     // ==============================================================================//
 

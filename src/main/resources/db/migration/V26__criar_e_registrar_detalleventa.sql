@@ -2,7 +2,9 @@ CREATE TABLE DetalleVenta (
     idVenta BIGINT(20) NOT NULL,
 	idServicio BIGINT(20) NOT NULL,
     cantidad BIGINT(20) NOT NULL,
+    idEstadoServ BIGINT(20) NOT NULL,
     FOREIGN KEY (idVenta) REFERENCES Venta (idVenta) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (idServicio) REFERENCES Servicio (idServicio) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (idEstadoServ) REFERENCES EstadoServicio (idEstadoServ) ON DELETE RESTRICT ON UPDATE CASCADE,
     PRIMARY KEY (idVenta, idServicio)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

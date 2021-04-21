@@ -3,25 +3,21 @@ package com.clinica.erp.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "empinstitucion")
+@Table(name = "emp_institucion")
 public class EmpInstitucion {
     
     //================================================================================ 
     // Columns
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEmpInstitucion")
-    private long idEmpInstitucion;
-    
+    @EmbeddedId
+    EmpInstitucionKey id;
+
     @Column(name = "fechaInicio")
     private Date fechaInicio;
 
@@ -35,24 +31,24 @@ public class EmpInstitucion {
     //================================================================================ 
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idInstitucion")
+    @JoinColumn(name = "idInstitucion", insertable = false, updatable = false)
     private Institucion institucion;
 
     @ManyToOne
-    @JoinColumn(name = "idEmpleado")
+    @JoinColumn(name = "idEmpleado", insertable = false, updatable = false)
     private Empleado empleado;
     //==============================================================================//
 
     //================================================================================ 
-    // Getters and Setters
-    public long getIdEmpInstitucion() {
-        return idEmpInstitucion;
-    }
-    public void setIdEmpInstitucion(long idEmpInstitucion) {
-        this.idEmpInstitucion = idEmpInstitucion;
-    }
+    // Getters and Setters  
     public Date getFechaInicio() {
         return fechaInicio;
+    }
+    public EmpInstitucionKey getId() {
+        return id;
+    }
+    public void setId(EmpInstitucionKey id) {
+        this.id = id;
     }
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
@@ -82,12 +78,11 @@ public class EmpInstitucion {
         this.empleado = empleado;
     }    
     //==============================================================================//
-    
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idEmpInstitucion ^ (idEmpInstitucion >>> 32));
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
     @Override
@@ -99,12 +94,14 @@ public class EmpInstitucion {
         if (getClass() != obj.getClass())
             return false;
         EmpInstitucion other = (EmpInstitucion) obj;
-        if (idEmpInstitucion != other.idEmpInstitucion)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
 
-    
     
 
     

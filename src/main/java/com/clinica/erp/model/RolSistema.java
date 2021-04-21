@@ -28,7 +28,7 @@ public class RolSistema {
 
     //================================================================================ 
     // Relations
-    @ManyToMany(mappedBy = "rolsistema")
+    @ManyToMany(mappedBy = "roles")
     private Set<Usuario> usuarios = new HashSet<>();   
     //==============================================================================//
 

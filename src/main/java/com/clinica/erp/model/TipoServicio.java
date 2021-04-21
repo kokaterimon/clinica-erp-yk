@@ -29,7 +29,7 @@ public class TipoServicio {
 
     // ================================================================================
     // Relations
-    @OneToMany(mappedBy = "tiposervicio")
+    @OneToMany(mappedBy = "tipoServicio")
     private Set<Servicio> servicios = new HashSet<>();
     // ==============================================================================//
     

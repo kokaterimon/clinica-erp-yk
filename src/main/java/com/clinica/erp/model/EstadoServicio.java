@@ -34,24 +34,7 @@ public class EstadoServicio {
 
     // ================================================================================
     // Getters and Setters
-    public long getIdEstadoServo() {
-        return idEstadoServ;
-    }
-    public void setIdEstadoServ(long idEstadoServ) {
-        this.idEstadoServ = idEstadoServ;
-    }
-    public String getNombreEst() {
-        return nombreEst;
-    }
-    public void setNombreEst(String nombreEst) {
-        this.nombreEst = nombreEst;
-    }
-    public Set<DetalleVenta> getDetallesVenta() {
-        return detallesVenta;
-    }
-    public void setDetallesVenta(Set<DetalleVenta> detallesVenta) {
-        this.detallesVenta = detallesVenta;
-    }
+    
     // ==============================================================================//
 
     
