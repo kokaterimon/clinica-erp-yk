@@ -1,0 +1,5 @@
+CREATE TABLE Institucion (
+	idInstitucion BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nombreInstitucion VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

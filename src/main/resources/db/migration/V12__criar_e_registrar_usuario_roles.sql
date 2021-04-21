@@ -1,0 +1,8 @@
+CREATE TABLE Usuario_Roles (
+	idRolSistema BIGINT(20) NOT NULL,
+	idUsuario BIGINT(20) NOT NULL,
+
+    FOREIGN KEY (idRolSistema) REFERENCES RolSistema (idRolSistema) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario (idUsuario) ON DELETE RESTRICT ON UPDATE CASCADE,
+    PRIMARY KEY (idRolSistema, idUsuario)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

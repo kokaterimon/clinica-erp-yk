@@ -1,0 +1,14 @@
+CREATE TABLE Empleado (
+	idEmpleado BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	dni VARCHAR(50) NOT NULL,
+	direccion VARCHAR(50) NOT NULL,
+	nombres VARCHAR(50) NOT NULL,
+	apellidos VARCHAR(50) NOT NULL,
+	telefono VARCHAR(50) NOT NULL,
+	salario VARCHAR(50) NOT NULL,
+	fechaNacimiento DATE NOT NULL,
+	fechaInicio DATE NOT NULL,
+	fechaFin DATE NOT NULL,
+	estado VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

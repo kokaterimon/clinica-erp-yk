@@ -3,6 +3,5 @@ CREATE TABLE Cliente (
     direccion VARCHAR(50) NOT NULL,
     telefono VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    idTipoCliente BIGINT(20) NOT NULL,
-    FOREIGN KEY (idTipoCliente) REFERENCES TipoCliente (idTipoCliente) ON DELETE RESTRICT ON UPDATE CASCADE
+    tipoCliente INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
