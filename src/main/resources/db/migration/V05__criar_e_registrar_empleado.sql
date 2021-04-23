@@ -9,6 +9,8 @@ CREATE TABLE Empleado (
 	fechaNacimiento DATE NOT NULL,
 	fechaInicio DATE NOT NULL,
 	fechaFin DATE NOT NULL,
-	estado VARCHAR(50) NOT NULL
+	estado VARCHAR(50) NOT NULL,
+	idDistrito BIGINT(20) NOT NULL,
+	FOREIGN KEY (idDistrito) REFERENCES Distrito (idDistrito) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -1,5 +1,6 @@
 package com.clinica.erp.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,9 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "emp_institucion")
-public class EmpInstitucion {
+public class EmpInstitucion implements Serializable{
     
     //================================================================================ 
     // Columns
@@ -19,9 +23,11 @@ public class EmpInstitucion {
     EmpInstitucionKey id;
 
     @Column(name = "fechaInicio")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaInicio;
 
     @Column(name = "fechaFin")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaFin;
 
     @Column(name = "archivo")
@@ -31,10 +37,12 @@ public class EmpInstitucion {
     //================================================================================ 
     // Relations
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idInstitucion", insertable = false, updatable = false)
     private Institucion institucion;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idEmpleado", insertable = false, updatable = false)
     private Empleado empleado;
     //==============================================================================//

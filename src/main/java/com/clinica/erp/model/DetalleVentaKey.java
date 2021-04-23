@@ -6,8 +6,8 @@ import javax.persistence.Column;
 
 public class DetalleVentaKey  implements Serializable  {
     @Column(name = "idVenta")
-    Long idVenta;
+    Integer idVenta;
 
     @Column(name = "idServicio")
-    Long idServicio;
+    Integer idServicio;
 }

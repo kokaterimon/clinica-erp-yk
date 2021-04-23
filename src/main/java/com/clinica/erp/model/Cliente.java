@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -20,7 +22,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCliente")
-    private long idCliente;
+    private Integer idCliente;
 
     @Column(name = "tipoCliente")// 1 cliente natural, 2 cliente juridico
     private int tipoCliente;
@@ -39,16 +41,17 @@ public class Cliente {
     // ================================================================================
     // Relations
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private Set<Venta> ventas = new HashSet<>();
     // ==============================================================================//
 
 
     // ================================================================================
     // Getters and Setters
-    public long getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
-    public void setIdCliente(long idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
     public int getTipoCliente() {

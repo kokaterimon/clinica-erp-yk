@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "distrito")
 public class Distrito {
@@ -21,35 +23,54 @@ public class Distrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDistrito")
-    private long idDistrito;
+    private Integer idDistrito;
     
-    @Column(name = "nombreDistrito")
-    private String nombreDistrito;
+    @Column(name = "nombDistrito")
+    private String nombDistrito;
+
+    @Column(name = "idProvincia")
+    private Integer idProvincia;
     //==============================================================================// 
 
     //================================================================================ 
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idProvincia")
+    @JsonIgnore
+    @JoinColumn(name = "idProvincia", insertable = false, updatable = false)
     private Provincia provincia;
 
     @OneToMany(mappedBy = "distrito")
-    private Set<Direccion> direcciones = new HashSet<>();
+    @JsonIgnore
+    private Set<Empleado> empleados = new HashSet<>();
+
+    
     //==============================================================================// 
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdDistrito() {
+    public Integer getIdDistrito() {
         return idDistrito;
     }
-    public void setIdDistrito(long idDistrito) {
+    public void setIdDistrito(Integer idDistrito) {
         this.idDistrito = idDistrito;
     }
-    public String getNombreDistrito() {
-        return nombreDistrito;
+    public String getnombDistrito() {
+        return nombDistrito;
     }
-    public void setNombreDistrito(String nombreDistrito) {
-        this.nombreDistrito = nombreDistrito;
+    public void setnombDistrito(String nombDistrito) {
+        this.nombDistrito = nombDistrito;
+    } 
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+    public Integer getIdProvincia() {
+        return idProvincia;
+    }
+    public void setIdProvincia(Integer idProvincia) {
+        this.idProvincia = idProvincia;
     }
     public Provincia getProvincia() {
         return provincia;
@@ -57,15 +78,10 @@ public class Distrito {
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
-    public Set<Direccion> getDirecciones() {
-        return direcciones;
-    }
-    public void setDirecciones(Set<Direccion> direcciones) {
-        this.direcciones = direcciones;
-    }
     //==============================================================================// 
 
 
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -74,6 +90,7 @@ public class Distrito {
         return result;
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

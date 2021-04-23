@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "terminalventa")
 public class TerminalVenta {
@@ -22,7 +24,7 @@ public class TerminalVenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTerminal")
-    private long idTerminal;
+    private Integer idTerminal;
 
     @Column(name = "nombreTerminal")
     private String nombreTerminal;
@@ -32,24 +34,27 @@ public class TerminalVenta {
     // ================================================================================
     // Relations
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idSede")
     private Sede sede;
 
     @OneToMany(mappedBy = "terminalVenta")
+    @JsonIgnore
     private Set<Venta> ventas = new HashSet<>();
     // ==============================================================================//
 
 
     // ================================================================================
     // Getters and Setters
-    public long getIdTerminal() {
+    public Integer getIdTerminal() {
         return idTerminal;
     }
-    public void setIdTerminal(long idTerminal) {
+    public void setIdTerminal(Integer idTerminal) {
         this.idTerminal = idTerminal;
     }
     public String getNombreTerminal() {

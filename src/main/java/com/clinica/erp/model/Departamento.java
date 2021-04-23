@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.lang.NonNull;
+
+
 @Entity
 @Table(name = "departamento")
 public class Departamento {
@@ -20,34 +25,60 @@ public class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDepartamento")
-    private long idDepartamento;
+    private Integer idDepartamento;
 
-    @Column(name = "nombreDepartamento")
-    private String nombreDepartamento;
+    @NonNull
+    @Column(name = "nombDepartamento")
+    private String nombDepartamento;
+
+    @NonNull
+    @Column(name = "codigo")
+    private String codigo;
     //==============================================================================// 
+
+
 
     //================================================================================ 
     // Relations
     @OneToMany(mappedBy = "departamento")
+    @JsonIgnore
     private Set<Provincia> provincias = new HashSet<>();
     //==============================================================================// 
 
+
+
     //================================================================================ 
     // Getters and Setters
-    public long getIdDepartamento() {
+        public Integer getIdDepartamento() {
         return idDepartamento;
     }
-    public void setIdDepartamento(long idDepartamento) {
+
+
+    public void setIdDepartamento(Integer idDepartamento) {
         this.idDepartamento = idDepartamento;
     }
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
+
+
+    public String getnombDepartamento() {
+        return nombDepartamento;
     }
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
+
+    public void setnombDepartamento(String nombDepartamento) {
+        this.nombDepartamento = nombDepartamento;
+    }
+    public String getCodigo() {
+        return codigo;
+    }
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }   
+    public Set<Provincia> getProvincias() {
+        return provincias;
+    }
+    public void setProvincias(Set<Provincia> provincias) {
+        this.provincias = provincias;
     }
     //==============================================================================// 
-
 
     @Override
     public int hashCode() {
@@ -55,7 +86,7 @@ public class Departamento {
         int result = 1;
         result = prime * result + (int) (idDepartamento ^ (idDepartamento >>> 32));
         return result;
-    }
+    }  
 
     @Override
     public boolean equals(Object obj) {

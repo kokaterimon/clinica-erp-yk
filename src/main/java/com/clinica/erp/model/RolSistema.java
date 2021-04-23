@@ -20,7 +20,7 @@ public class RolSistema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRolSistema")
-    private long idRolSistema;
+    private Integer idRolSistema;
 
     @Column(name = "nombreRol")
     private String nombreRol;
@@ -34,10 +34,10 @@ public class RolSistema {
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdRolSistema() {
+    public Integer getIdRolSistema() {
         return idRolSistema;
     }
-    public void setIdRolSistema(long idRolSistema) {
+    public void setIdRolSistema(Integer idRolSistema) {
         this.idRolSistema = idRolSistema;
     }
     public String getNombreRol() {

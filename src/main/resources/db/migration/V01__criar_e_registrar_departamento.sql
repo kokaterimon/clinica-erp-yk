@@ -1,4 +1,5 @@
 CREATE TABLE Departamento (
 	idDepartamento BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	nombreDepartamento VARCHAR(50) NOT NULL
+	nombDepartamento VARCHAR(50) NOT NULL,
+	codigo VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

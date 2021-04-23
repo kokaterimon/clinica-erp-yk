@@ -14,7 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "empleado")
@@ -24,7 +28,7 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEmpleado")
-    private long idEmpleado;
+    private Integer idEmpleado;
 
     @Column(name = "dni")
     private String dni;
@@ -45,12 +49,15 @@ public class Empleado {
     private String salario;
 
     @Column(name = "fechaNacimiento")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaNacimiento;
 
     @Column(name = "fechaInicio")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaInicio;
 
     @Column(name = "fechaFin")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaFin;
 
     @Column(name = "estado")
@@ -60,9 +67,11 @@ public class Empleado {
     
 
     //================================================================================ 
-    // Relations
-    @OneToMany(mappedBy = "empleado")
-    private Set<Direccion> direcciones = new HashSet<>();
+    // Relations  
+    @ManyToOne
+    @JoinColumn(name = "idDistrito")
+    @JsonIgnore
+    private Distrito distrito;
 
     @OneToMany(mappedBy = "empleado")
     private Set<EmpInstitucion> empInstituciones = new HashSet<>();
@@ -74,25 +83,28 @@ public class Empleado {
     private Set<Area> areas;   
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(name="emp_institucion", 
                 joinColumns={@JoinColumn(name="idEmpleado")}, 
                 inverseJoinColumns={@JoinColumn(name="idInstitucion")})
     private Set<Institucion> instituciones;   
 
     @OneToMany(mappedBy = "empleado")
+    @JsonIgnore
     private Set<Usuario> usuarios = new HashSet<>();
 
     @OneToMany(mappedBy = "empleado")
+    @JsonIgnore
     private Set<Horario> horarios = new HashSet<>();
     //==============================================================================// 
     
     
     //================================================================================ 
     // Getters and Setters
-    public long getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return idEmpleado;
     }
-    public void setIdEmpleado(long idEmpleado) {
+    public void setIdEmpleado(Integer idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
     public String getDni() {
@@ -155,12 +167,6 @@ public class Empleado {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public Set<Direccion> getDirecciones() {
-        return direcciones;
-    }
-    public void setDirecciones(Set<Direccion> direcciones) {
-        this.direcciones = direcciones;
-    }
     public Set<EmpInstitucion> getEmpInstituciones() {
         return empInstituciones;
     }
@@ -179,8 +185,27 @@ public class Empleado {
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+    public Distrito getDistrito() {
+        return distrito;
+    }
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
+    }
+    public Set<Institucion> getInstituciones() {
+        return instituciones;
+    }
+    public void setInstituciones(Set<Institucion> instituciones) {
+        this.instituciones = instituciones;
+    }
+    public Set<Horario> getHorarios() {
+        return horarios;
+    }
+    public void setHorarios(Set<Horario> horarios) {
+        this.horarios = horarios;
+    }
 
     //==============================================================================//
+    
     
     @Override
     public int hashCode() {

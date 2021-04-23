@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "servicio")
 public class Servicio {
@@ -22,7 +24,7 @@ public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idServicio")
-    private long idServicio;
+    private Integer idServicio;
 
     @Column(name = "nombreServicio")
     private String nombreServicio;
@@ -43,28 +45,32 @@ public class Servicio {
     // ================================================================================
     // Relations
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idTipoServio")
     private TipoServicio tipoServicio;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idMuestra")
     private Muestra muestra;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idTiempoProc")
     private TiempoProceso tiempoProc;
 
     @OneToMany(mappedBy = "servicio")
+    @JsonIgnore
     private Set<DetalleVenta> detallesVenta = new HashSet<>();
     // ==============================================================================//
     
     
     // ================================================================================
     // Getters and Setters
-    public long getIdServicio() {
+    public Integer getIdServicio() {
         return idServicio;
     }
-    public void setIdServicio(long idServicio) {
+    public void setIdServicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
     public String getNombreServicio() {

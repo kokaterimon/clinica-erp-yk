@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "estadoservicio")
 public class EstadoServicio {
@@ -19,7 +21,7 @@ public class EstadoServicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEstadoServ")
-    private long idEstadoServ;
+    private Integer idEstadoServ;
 
     @Column(name = "nombreEst")
     private String nombreEst;
@@ -28,6 +30,7 @@ public class EstadoServicio {
     // ================================================================================
     // Relations
     @OneToMany(mappedBy = "estadoservicio")
+    @JsonIgnore
     private Set<DetalleVenta> detallesVenta = new HashSet<>();
     // ==============================================================================//
 

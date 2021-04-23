@@ -23,7 +23,7 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idVenta")
-    private long idVenta;
+    private Integer idVenta;
 
     @Column(name = "nroFactura")
     private String nroFactura;
@@ -52,10 +52,10 @@ public class Venta {
 
     // ================================================================================
     // Getters and Setters
-    public long getIdVenta() {
+    public Integer getIdVenta() {
         return idVenta;
     }
-    public void setIdVenta(long idVenta) {
+    public void setIdVenta(Integer idVenta) {
         this.idVenta = idVenta;
     }
     public String getNroFactura() {

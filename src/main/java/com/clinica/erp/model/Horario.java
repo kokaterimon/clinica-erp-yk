@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "horario")
 public class Horario {
@@ -21,12 +24,14 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idHorario")
-    private long idHorario;
+    private Integer idHorario;
     
     @Column(name = "diaInicio")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date diaInicio;
 
     @Column(name = "diaFin")
+    @JsonFormat(pattern="YYYY-MM-DD")
     private Date diaFin;
 
     @Column(name = "horaEntrada")
@@ -41,6 +46,7 @@ public class Horario {
     //================================================================================ 
     // Relations
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
     //==============================================================================//
@@ -48,10 +54,10 @@ public class Horario {
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdHorario() {
+    public Integer getIdHorario() {
         return idHorario;
     }
-    public void setIdHorario(long idHorario) {
+    public void setIdHorario(Integer idHorario) {
         this.idHorario = idHorario;
     }
     public Date getDiaInicio() {

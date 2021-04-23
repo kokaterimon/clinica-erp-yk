@@ -26,19 +26,25 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
-    private long idUsuario;
+    private Integer idUsuario;
+
+    @Column(name = "contrasenaUsuario")
+    private String contrasenaUsuario;
 
     @Column(name = "nombreUsuario")
     private String nombreUsuario;
 
     @Column(name = "emailUsuario")
     private String emailUsuario;
+
+    @Column(name = "idEmpleado")
+    private Integer idEmpleado;
     // ==============================================================================//
 
     // ================================================================================
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idEmpleado")
+    @JoinColumn(name = "idEmpleado", insertable = false, updatable = false)
     private Empleado empleado;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -52,50 +58,53 @@ public class Usuario {
 
     // ================================================================================
     // Getters and Setters
-    public long getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
-
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
-
     public String getNombreUsuario() {
         return nombreUsuario;
     }
-
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-
     public String getEmailUsuario() {
         return emailUsuario;
     }
-
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
-
     public Empleado getEmpleado() {
         return empleado;
     }
-
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
     public Set<TerminalVenta> getTerminalesVenta() {
         return terminalesVenta;
     }
-
     public void setTerminalesVenta(Set<TerminalVenta> terminalesVenta) {
         this.terminalesVenta = terminalesVenta;
     }
     public Set<RolSistema> getRoles() {
         return roles;
     }
-
     public void setRoles(Set<RolSistema> roles) {
         this.roles = roles;
+    }
+        public String getContrasenaUsuario() {
+        return contrasenaUsuario;
+    }
+    public void setContrasenaUsuario(String contrasenaUsuario) {
+        this.contrasenaUsuario = contrasenaUsuario;
+    }
+    public Integer getIdEmpleado() {
+        return idEmpleado;
+    }
+    public void setIdEmpleado(Integer idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
     // ==============================================================================//
 

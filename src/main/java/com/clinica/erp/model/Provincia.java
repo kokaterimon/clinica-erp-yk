@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "provincia")
 public class Provincia {
@@ -22,58 +24,73 @@ public class Provincia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idProvincia")
-    private long idProvincia;
+    private Integer idProvincia;
     
-    @Column(name = "nombreProvincia")
-    private String nombreProvincia;
+    @Column(name = "nombProvincia")
+    private String nombProvincia;
+    
+    @Column(name = "idDepartamento")
+    private Integer idDepartamento;
     //==============================================================================// 
+
 
     //================================================================================ 
     // Relations
-    @ManyToOne
-    @JoinColumn(name = "idDepartamento")
-    private Departamento departamento;
+        @ManyToOne
+        @JsonIgnore
+        @JoinColumn(name = "idDepartamento", insertable = false, updatable = false)
+        private Departamento departamento;
 
-    @OneToMany(mappedBy = "provincia")
-    private Set<Distrito> distritos = new HashSet<>();
+        @OneToMany(mappedBy = "provincia")
+        @JsonIgnore
+        private Set<Distrito> distritos = new HashSet<>();
     //==============================================================================// 
+
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdProvincia() {
+    public Integer getIdProvincia() {
         return idProvincia;
     }
-    public void setIdProvincia(long idProvincia) {
+    public void setIdProvincia(Integer idProvincia) {
         this.idProvincia = idProvincia;
     }
-    public String getNombreProvincia() {
-        return nombreProvincia;
+    public String getnombProvincia() {
+        return nombProvincia;
     }
-    public void setNombreProvincia(String nombreProvincia) {
-        this.nombreProvincia = nombreProvincia;
+    public void setnombProvincia(String nombProvincia) {
+        this.nombProvincia = nombProvincia;
     }
+    public Integer getIdDepartamento() {
+        return idDepartamento;
+    }
+    public void setIdDepartamento(Integer idDepartamento) {
+        this.idDepartamento = idDepartamento;
+    }    
     public Departamento getDepartamento() {
         return departamento;
     }
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
-    }    
+    }
     public Set<Distrito> getDistritos() {
         return distritos;
     }
     public void setDistritos(Set<Distrito> distritos) {
         this.distritos = distritos;
-    }    
+    }
     //==============================================================================//
 
+    
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + (int) (idProvincia ^ (idProvincia >>> 32));
         return result;
-    }
-
+    }    
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

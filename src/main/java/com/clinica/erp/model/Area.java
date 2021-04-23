@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "area")
 public class Area {
@@ -20,7 +22,7 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idArea")
-    private long idArea;
+    private Integer idArea;
 
     @Column(name = "nombreArea")
     private String nombreArea;
@@ -30,16 +32,17 @@ public class Area {
     //================================================================================ 
     // Relations
     @ManyToMany(mappedBy = "areas")
+    @JsonIgnore
     private Set<Empleado> empleados = new HashSet<>();
     //==============================================================================// 
 
 
     //================================================================================ 
     // Getters and Setters
-    public long getIdArea() {
+    public Integer getIdArea() {
         return idArea;
     }
-    public void setIdArea(long idArea) {
+    public void setIdArea(Integer idArea) {
         this.idArea = idArea;
     }
     public String getNombreArea() {
