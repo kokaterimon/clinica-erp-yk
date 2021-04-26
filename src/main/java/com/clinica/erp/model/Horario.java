@@ -39,6 +39,9 @@ public class Horario {
 
     @Column(name = "horaSalida")
     private Time horaSalida;
+
+    @Column(name = "idEmpleado")
+    private Integer idEmpleado;
     //==============================================================================// 
 
 
@@ -47,7 +50,7 @@ public class Horario {
     // Relations
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idEmpleado")
+    @JoinColumn(name = "idEmpleado", insertable = false,updatable = false)
     private Empleado empleado;
     //==============================================================================//
 
@@ -90,6 +93,12 @@ public class Horario {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }   
+    public Integer getIdEmpleado() {
+        return idEmpleado;
+    }
+    public void setIdEmpleado(Integer idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
     //==============================================================================//
     
     
@@ -113,4 +122,5 @@ public class Horario {
             return false;
         return true;
     }
+
 }

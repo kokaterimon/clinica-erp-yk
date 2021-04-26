@@ -1,7 +1,7 @@
 CREATE TABLE ClienteJuridico (
 	idClienteJuridico BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    numeroRuc VARCHAR(50) NOT NULL,
-    nombreEmpresa VARCHAR(50) NOT NULL,    
+    numeroRuc VARCHAR(50),
+    nombreEmpresa VARCHAR(50),    
     idCliente BIGINT(20) NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Cliente (idCliente) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -28,6 +28,13 @@ public class TerminalVenta {
 
     @Column(name = "nombreTerminal")
     private String nombreTerminal;
+
+    @Column(name = "idUsuario")
+    private Integer idUsuario;
+
+    @Column(name = "idSede")
+    private Integer idSede;
+
     // ==============================================================================//
 
 
@@ -35,12 +42,12 @@ public class TerminalVenta {
     // Relations
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "idUsuario", insertable = false,updatable = false)
     private Usuario usuario;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idSede")
+    @JoinColumn(name = "idSede", insertable = false,updatable = false)
     private Sede sede;
 
     @OneToMany(mappedBy = "terminalVenta")
@@ -81,6 +88,18 @@ public class TerminalVenta {
     public void setVentas(Set<Venta> ventas) {
         this.ventas = ventas;
     }
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    public Integer getIdSede() {
+        return idSede;
+    }
+    public void setIdSede(Integer idSede) {
+        this.idSede = idSede;
+    }
     // ==============================================================================//
     
     
@@ -91,6 +110,7 @@ public class TerminalVenta {
         result = prime * result + (int) (idTerminal ^ (idTerminal >>> 32));
         return result;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

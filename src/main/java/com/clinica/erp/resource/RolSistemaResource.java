@@ -6,44 +6,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.net.URI;
 
-import com.clinica.erp.model.Distrito;
-import com.clinica.erp.repository.DistritoRepository;
+import com.clinica.erp.model.RolSistema;
+import com.clinica.erp.repository.RolSistemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/distritos")
-public class DistritoResource {
+@RequestMapping("/rolSistema")
+public class RolSistemaResource {
         @Autowired
-    private DistritoRepository distritoRepository;
+    private RolSistemaRepository rolSistemaRepository;
 
     @GetMapping
-    public List<Distrito> listar(@RequestParam(required=false,name="Prov_likes") Integer idProvincia) {        
-        return distritoRepository.findAll();
+    public List<RolSistema> listar() {
+        return rolSistemaRepository.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Distrito> crear(@Validated @RequestBody Distrito distrito, HttpServletResponse response) {        
-        Distrito distritoSave = distritoRepository.save(distrito);
+    public ResponseEntity<RolSistema> crear(@Validated @RequestBody RolSistema rolSistema, HttpServletResponse response) {        
+        RolSistema rolSistemaSave = rolSistemaRepository.save(rolSistema);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                    .buildAndExpand(distritoSave.getIdDistrito()).toUri();
+                    .buildAndExpand(rolSistemaSave.getIdRolSistema()).toUri();
 		
-		return ResponseEntity.created(uri).body(distritoSave);
+		return ResponseEntity.created(uri).body(rolSistemaSave);
     }
 
     @GetMapping("/{id}")
-    public List<Distrito> mostrar(@PathVariable Integer id){
-       // return distritoRepository.findById(id).get();     
-        return distritoRepository.findByidProvincia(id);    
+    public RolSistema mostrar(@PathVariable Integer id){
+        return rolSistemaRepository.findById(id).get();       
     }
 }

@@ -40,23 +40,32 @@ public class Servicio {
 
     @Column(name = "tiempoProceso")
     private String tiempoProceso;
+    
+    @Column(name = "idTipoServio")
+    private Integer idTipoServio;
+
+    @Column(name = "idMuestra")
+    private Integer idMuestra;
+
+    @Column(name = "idTiempoProc")
+    private Integer idTiempoProc;
     // ==============================================================================//
 
     // ================================================================================
     // Relations
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idTipoServio")
+    @JoinColumn(name = "idTipoServio", insertable = false,updatable = false)
     private TipoServicio tipoServicio;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idMuestra")
+    @JoinColumn(name = "idMuestra", insertable = false,updatable = false)
     private Muestra muestra;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "idTiempoProc")
+    @JoinColumn(name = "idTiempoProc", insertable = false,updatable = false)
     private TiempoProceso tiempoProc;
 
     @OneToMany(mappedBy = "servicio")
@@ -127,6 +136,24 @@ public class Servicio {
     public void setDetallesVenta(Set<DetalleVenta> detallesVenta) {
         this.detallesVenta = detallesVenta;
     }
+    public Integer getIdTipoServio() {
+        return idTipoServio;
+    }
+    public void setIdTipoServio(Integer idTipoServio) {
+        this.idTipoServio = idTipoServio;
+    }
+    public Integer getIdMuestra() {
+        return idMuestra;
+    }
+    public void setIdMuestra(Integer idMuestra) {
+        this.idMuestra = idMuestra;
+    }
+    public Integer getIdTiempoProc() {
+        return idTiempoProc;
+    }
+    public void setIdTiempoProc(Integer idTiempoProc) {
+        this.idTiempoProc = idTiempoProc;
+    }
     // ==============================================================================//
     
     
@@ -150,7 +177,5 @@ public class Servicio {
             return false;
         return true;
     }
-
     
-
 }

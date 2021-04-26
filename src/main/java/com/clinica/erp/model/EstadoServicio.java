@@ -37,7 +37,24 @@ public class EstadoServicio {
 
     // ================================================================================
     // Getters and Setters
-    
+    public Integer getIdEstadoServ() {
+        return idEstadoServ;
+    }
+    public void setIdEstadoServ(Integer idEstadoServ) {
+        this.idEstadoServ = idEstadoServ;
+    }
+    public String getNombreEst() {
+        return nombreEst;
+    }
+    public void setNombreEst(String nombreEst) {
+        this.nombreEst = nombreEst;
+    }
+    public Set<DetalleVenta> getDetallesVenta() {
+        return detallesVenta;
+    }
+    public void setDetallesVenta(Set<DetalleVenta> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }    
     // ==============================================================================//
 
     
@@ -61,4 +78,5 @@ public class EstadoServicio {
             return false;
         return true;
     }
+        
 }

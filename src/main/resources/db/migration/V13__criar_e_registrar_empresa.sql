@@ -1,6 +1,6 @@
 CREATE TABLE Empresa (
 	idEmpresa BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	nombre VARCHAR(50) NOT NULL,
+	nombre VARCHAR(50),
     direccion VARCHAR(50),
-    ruc VARCHAR(50) NOT NULL
+    ruc VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

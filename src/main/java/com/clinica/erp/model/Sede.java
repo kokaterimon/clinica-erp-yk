@@ -34,16 +34,20 @@ public class Sede {
 
     @Column(name = "telefono")
     private String telefono;
+
+    @Column(name = "idEmpresa")
+    private Integer idEmpresa;
     // ==============================================================================//
 
     // ================================================================================
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idEmpresa")
+    @JoinColumn(name = "idEmpresa", insertable = false,updatable = false)
     @JsonIgnore
     private Empresa empresa;
 
     @OneToMany(mappedBy = "sede")
+    @JsonIgnore
     private Set<TerminalVenta> terminalesVenta = new HashSet<>();
     // ==============================================================================//
 
@@ -86,6 +90,12 @@ public class Sede {
     public void setTerminalesVenta(Set<TerminalVenta> terminalesVenta) {
         this.terminalesVenta = terminalesVenta;
     }
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
     // ==============================================================================//
 
 
@@ -96,6 +106,7 @@ public class Sede {
         result = prime * result + (int) (idSede ^ (idSede >>> 32));
         return result;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

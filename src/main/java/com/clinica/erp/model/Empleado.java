@@ -31,11 +31,8 @@ public class Empleado {
     private Integer idEmpleado;
 
     @Column(name = "dni")
-    private String dni;
+    private String dni;    
     
-    @Column(name = "direccion")
-    private String direccion;
-
     @Column(name = "nombres")
     private String nombres;
 
@@ -63,20 +60,29 @@ public class Empleado {
     @Column(name = "estado")
     private String estado;
 
+    @Column(name = "direccion")
+    private String direccion;
+
+
+    @Column(name = "idDistrito")
+    private Integer idDistrito;
+
     //==============================================================================// 
     
 
     //================================================================================ 
     // Relations  
     @ManyToOne
-    @JoinColumn(name = "idDistrito")
+    @JoinColumn(name = "idDistrito", insertable = false,updatable = false)
     @JsonIgnore
     private Distrito distrito;
 
     @OneToMany(mappedBy = "empleado")
+    @JsonIgnore
     private Set<EmpInstitucion> empInstituciones = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(name="emp_area", 
                 joinColumns={@JoinColumn(name="idEmpleado")}, 
                 inverseJoinColumns={@JoinColumn(name="idArea")})
@@ -203,6 +209,12 @@ public class Empleado {
     public void setHorarios(Set<Horario> horarios) {
         this.horarios = horarios;
     }
+    public Integer getIdDistrito() {
+        return idDistrito;
+    }
+    public void setIdDistrito(Integer idDistrito) {
+        this.idDistrito = idDistrito;
+    }
 
     //==============================================================================//
     
@@ -214,6 +226,7 @@ public class Empleado {
         result = prime * result + (int) (idEmpleado ^ (idEmpleado >>> 32));
         return result;
     }
+    
     
     @Override
     public boolean equals(Object obj) {

@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "venta")
 public class Venta {
@@ -30,6 +32,12 @@ public class Venta {
 
     @Column(name = "fecha")
     private Date fecha;
+
+    @Column(name = "idCliente")
+    private Integer idCliente;
+
+    @Column(name = "idTerminal")
+    private Integer idTerminal;
     // ==============================================================================//
 
 
@@ -37,11 +45,13 @@ public class Venta {
     // ================================================================================
     // Relations
     @ManyToOne
-    @JoinColumn(name = "idCliente")
+    @JsonIgnore
+    @JoinColumn(name = "idCliente", insertable = false, updatable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "idTerminal")
+    @JsonIgnore
+    @JoinColumn(name = "idTerminal", insertable = false, updatable = false)
     private TerminalVenta terminalVenta;
 
     @OneToMany(mappedBy = "venta")
@@ -69,6 +79,18 @@ public class Venta {
     }
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+    public Integer getIdTerminal() {
+        return idTerminal;
+    }
+    public void setIdTerminal(Integer idTerminal) {
+        this.idTerminal = idTerminal;
     }
     public Cliente getCliente() {
         return cliente;
@@ -98,6 +120,7 @@ public class Venta {
         result = prime * result + (int) (idVenta ^ (idVenta >>> 32));
         return result;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

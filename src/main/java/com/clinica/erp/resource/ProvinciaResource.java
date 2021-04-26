@@ -29,9 +29,9 @@ public class ProvinciaResource {
     
     @GetMapping
     public List<Provincia> mostrarPorDepartamento(@RequestParam(required=false,name="Dep_likes") Integer idDepartamento) {
-        if(idDepartamento != null){
+        /* if(idDepartamento != null){
             return provinciaRepository.findByidDepartamento(idDepartamento);
-        }
+        }*/
         return provinciaRepository.findAll();
     }
 
@@ -46,7 +46,7 @@ public class ProvinciaResource {
     }
 
     @GetMapping("/{id}")
-    public Provincia mostrar(@PathVariable Integer id) {
-        return provinciaRepository.findById(id).get();
+    public List<Provincia> mostrar(@PathVariable Integer id) {
+        return provinciaRepository.findByidDepartamento(id);
     }
 }

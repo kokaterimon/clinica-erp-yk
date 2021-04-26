@@ -4,7 +4,7 @@ CREATE TABLE Emp_Institucion (
 
     fechaInicio DATE NOT NULL,
     fechaFin DATE NOT NULL,
-	archivo VARCHAR(50) NOT NULL,
+	archivo VARCHAR(50),
 
     FOREIGN KEY (idInstitucion) REFERENCES Institucion (idInstitucion) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (idEmpleado) REFERENCES Empleado (idEmpleado) ON DELETE RESTRICT ON UPDATE CASCADE,

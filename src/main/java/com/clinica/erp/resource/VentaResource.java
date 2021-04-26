@@ -6,44 +6,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.net.URI;
 
-import com.clinica.erp.model.Distrito;
-import com.clinica.erp.repository.DistritoRepository;
+import com.clinica.erp.model.Venta;
+import com.clinica.erp.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/distritos")
-public class DistritoResource {
+@RequestMapping("/ventas")
+public class VentaResource {
         @Autowired
-    private DistritoRepository distritoRepository;
+    private VentaRepository ventaRepository;
 
     @GetMapping
-    public List<Distrito> listar(@RequestParam(required=false,name="Prov_likes") Integer idProvincia) {        
-        return distritoRepository.findAll();
+    public List<Venta> listar() {
+        return ventaRepository.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Distrito> crear(@Validated @RequestBody Distrito distrito, HttpServletResponse response) {        
-        Distrito distritoSave = distritoRepository.save(distrito);
+    public ResponseEntity<Venta> crear(@Validated @RequestBody Venta venta, HttpServletResponse response) {        
+        Venta ventaSave = ventaRepository.save(venta);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                    .buildAndExpand(distritoSave.getIdDistrito()).toUri();
+                    .buildAndExpand(ventaSave.getIdVenta()).toUri();
 		
-		return ResponseEntity.created(uri).body(distritoSave);
+		return ResponseEntity.created(uri).body(ventaSave);
     }
 
     @GetMapping("/{id}")
-    public List<Distrito> mostrar(@PathVariable Integer id){
-       // return distritoRepository.findById(id).get();     
-        return distritoRepository.findByidProvincia(id);    
+    public Venta mostrar(@PathVariable Integer id){
+        return ventaRepository.findById(id).get();       
     }
 }

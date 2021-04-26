@@ -22,6 +22,12 @@ public class EmpInstitucion implements Serializable{
     @EmbeddedId
     EmpInstitucionKey id;
 
+    @Column(name = "idInstitucion", insertable = false, updatable = false)
+    private String idInstitucion;
+
+    @Column(name = "idEmpleado", insertable = false, updatable = false)
+    private Integer idEmpleado;
+
     @Column(name = "fechaInicio")
     @JsonFormat(pattern="YYYY-MM-DD")
     private Date fechaInicio;
@@ -48,7 +54,19 @@ public class EmpInstitucion implements Serializable{
     //==============================================================================//
 
     //================================================================================ 
-    // Getters and Setters  
+    // Getters and Setters 
+    public String getIdInstitucion() {
+        return idInstitucion;
+    }
+    public void setIdInstitucion(String idInstitucion) {
+        this.idInstitucion = idInstitucion;
+    }
+    public Integer getIdEmpleado() {
+        return idEmpleado;
+    }
+    public void setIdEmpleado(Integer idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    } 
     public Date getFechaInicio() {
         return fechaInicio;
     }
@@ -109,8 +127,6 @@ public class EmpInstitucion implements Serializable{
             return false;
         return true;
     }
-
     
-
     
 }

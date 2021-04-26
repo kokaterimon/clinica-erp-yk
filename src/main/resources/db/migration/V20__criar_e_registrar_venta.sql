@@ -1,7 +1,7 @@
 CREATE TABLE Venta (
 	idVenta BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    nroFactura VARCHAR(50) NOT NULL,
-    fecha VARCHAR(50) NOT NULL,    
+    nroFactura VARCHAR(50),
+    fecha VARCHAR(50),    
     idTerminal BIGINT(20) NOT NULL,
     idCliente BIGINT(20) NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Cliente (idCliente) ON DELETE RESTRICT ON UPDATE CASCADE,

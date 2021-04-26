@@ -57,12 +57,12 @@ public class Institucion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<Empleado> getInstituciones() {
+    public Set<Empleado> getEmpleados() {
         return empleados;
     }
-    public void setEmpInstituciones(Set<Empleado> empleados) {
+    public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
-    } 
+    }
     //==============================================================================// 
     @Override
     public int hashCode() {
@@ -71,6 +71,7 @@ public class Institucion {
         result = prime * result + (int) (idInstitucion ^ (idInstitucion >>> 32));
         return result;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

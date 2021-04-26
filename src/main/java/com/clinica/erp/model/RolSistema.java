@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "rolsistema")
 public class RolSistema {
@@ -29,6 +31,7 @@ public class RolSistema {
     //================================================================================ 
     // Relations
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<Usuario> usuarios = new HashSet<>();   
     //==============================================================================//
 

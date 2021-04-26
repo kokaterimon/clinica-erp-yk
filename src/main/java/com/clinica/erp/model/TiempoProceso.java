@@ -24,8 +24,8 @@ public class TiempoProceso {
     @Column(name = "idTiempoProc")
     private Integer idTiempoProc;
 
-    @Column(name = "nombretp")
-    private String nombretp;
+    @Column(name = "nombreTiempoProc")
+    private String nombreTiempoProc;
     // ==============================================================================//
 
 
@@ -45,11 +45,11 @@ public class TiempoProceso {
     public void setIdTiempoProc(Integer idTiempoProc) {
         this.idTiempoProc = idTiempoProc;
     }
-    public String getNombretp() {
-        return nombretp;
+    public String getNombreTiempoProc() {
+        return nombreTiempoProc;
     }
-    public void setNombretp(String nombretp) {
-        this.nombretp = nombretp;
+    public void setNombreTiempoProc(String nombreTiempoProc) {
+        this.nombreTiempoProc = nombreTiempoProc;
     }
     public Set<Servicio> getServicios() {
         return servicios;
@@ -67,6 +67,8 @@ public class TiempoProceso {
         result = prime * result + (int) (idTiempoProc ^ (idTiempoProc >>> 32));
         return result;
     }
+
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

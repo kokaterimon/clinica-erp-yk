@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -44,15 +46,18 @@ public class Usuario {
     // ================================================================================
     // Relations
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idEmpleado", insertable = false, updatable = false)
     private Empleado empleado;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(name = "usuario_roles", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
             @JoinColumn(name = "idRolSistema") })
     private Set<RolSistema> roles;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private Set<TerminalVenta> terminalesVenta = new HashSet<>();
     // ==============================================================================//
 
